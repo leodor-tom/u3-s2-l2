@@ -16,7 +16,7 @@ const AddComment = props => {
     try {
       let response = await fetch("https://striveschool-api.herokuapp.com/api/comments", {
         method: "POST",
-        body: JSON.stringify(comment),
+        body: JSON.stringify({ ...comment, elementId: props.asin }),
         headers: {
           "Content-type": "application/json",
           Authorization:
@@ -48,7 +48,7 @@ const AddComment = props => {
             type="text"
             placeholder="Add comment here"
             value={comment.comment}
-            onChange={e => setComment(e.target.value)}
+            onChange={e => setComment({ ...comment, comment: e.target.value })}
           />
         </Form.Group>
         <Form.Group>
